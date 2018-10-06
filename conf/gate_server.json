@@ -1,0 +1,17 @@
+{
+  // 全局配置文件
+  // "system": {
+  // },
+
+  "thread_group" : {
+    "conn" : 4,
+  },
+
+  // 日志配置
+  "logger":{
+    // 配置
+  },
+
+  // 网络相关
+  "services":"@import(service.json)"
+}
