@@ -30,53 +30,14 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-find_package(Boost REQUIRED COMPONENTS system thread filesystem)
-find_package(OpenSSL REQUIRED)
-find_package(Threads REQUIRED)
-find_library(GLOG_LIBRARY_PATH glog)
-find_library(GFLAGS_LIBRARY_PATH gflags)
-find_package(Folly REQUIRED)
-find_package(Wangle REQUIRED)
-find_package(Proxygen REQUIRED COMPONENTS proxygenhttpserver proxygenlib)
-find_package(MySQL REQUIRED)
-
-include_directories(
-${CMAKE_SOURCE_DIR}
-${BOOST_INCLUDE_DIR}
-${FOLLY_INCLUDE_DIR}
-${WANGLE_INCLUDE_DIR}
-${PROXYGEN_INCLUDE_DIR}
-${MYSQL_INCLUDE_DIR}
-${OPENSSL_INCLUDE_DIR}
-${INCLUDE_DIR}
-${PROJECT_SOURCE_DIR}/nebula
-)
-
-#link_directories(/usr/local/Cellar/openssl/1.0.2d_1/lib /opt/local/lib /usr/local/lib /usr/local/mysql/lib ${PROJECT_BINARY_DIR}/lib)
-
-message("Folly lib: " ${FOLLY_LIBRARY})
-message("Wangle lib: " ${WANGLE_LIBRARY})
-message("Proxygen lib: " ${PROXYGEN_LIBRARY})
-message("MySQL lib: " ${MYSQL_LIB})
-message("OpenSSL: " ${OPENSSL_SSL_LIBRARY})
-
-link_directories(
-${FOLLY_LIBRARYDIR}
-${WANGLE_LIBRARYDIR}
-${PROXYGEN_LIBRARYDIR}
-${BOOST_LIBRARYDIR}
-${MYSQL_LIB_DIR}
-${OPENSSL_LIBRARYDIR}
-${PROJECT_BINARY_DIR}/lib
-/usr/local/lib
-)
 
 #set(CMAKE_EXE_LINKER_FLAGS "-lpthread -lrt -ldl")
 
-add_subdirectory(nebula/nebula)
-add_subdirectory(proto)
-#add_subdirectory(clientsdk)
-add_subdirectory(server)
+add_subdirectory(src/third_party/nebula/nebula)
+add_subdirectory(src/access/frontend)
+add_subdirectory(src/relay)
+
+#add_subdirectory(src)
 #add_subdirectory(biz_model)
 #add_subdirectory(dal)
 #add_subdirectory(client/client)
