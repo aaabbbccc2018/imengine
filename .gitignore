@@ -4,6 +4,7 @@ target/
 out/
 cmake-build-debug/
 tools/mtprotoc/
+src/mtproto/cc/
 
 #fixed file
 .class
